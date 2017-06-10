@@ -56,7 +56,7 @@ function createPortForwarder(local_host, local_port, remote_host, remote_port, b
       rejectUnauthorized: (doAuth && !ignore_https_cert) /*not used when is_remote_https false*/
     });
     realCon.on('data', function (buf) {
-      //console.log('<<<<' + (Date.t=new Date()) + '.' + Date.t.getMilliseconds() + '\n' + buf.toString('ascii'));
+      console.log('<<<<' + (Date.t=new Date()) + '.' + Date.t.getMilliseconds() + '\n' + buf.toString('ascii'));
       socket.write(buf);
       realCon.__haveGotData = true;
     }).on('end', function () {
@@ -192,7 +192,6 @@ function createPacServer(local_host, local_port, remote_host, remote_port, buf_p
       delete internal_res.headers['content-length'];
       delete internal_res.headers['transfer-encoding'];
 
-      console.log(internal_res.statusCode)
       res.writeHead(internal_res.statusCode, internal_res.headers);
       res.__haveWrittenData = true;
 
