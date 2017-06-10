@@ -1,0 +1,18 @@
+{
+  "name": "pla-noauth",
+  "version": "0.0.1",
+  "description": "Fork of proxy-login-automator to make auth optional, Automatically send user/password to http proxy server via a local forwarder. PAC is also supported.",
+  "bin": {"pla.js": "./pla.js"},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/entrptaher/pla-noauth.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/entrptaher/pla-noauth/issues"
+  },
+  "homepage": "https://github.com/entrptaher/pla-noauth/"
+}
