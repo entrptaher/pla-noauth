@@ -53,7 +53,7 @@ function createPortForwarder(local_host, local_port, remote_host, remote_port, b
   net.createServer({allowHalfOpen: true}, function (socket) {
     var realCon = (is_remote_https ? tls : net).connect({
       port: remote_port, host: remote_host, allowHalfOpen: true,
-      rejectUnauthorized: !ignore_https_cert /*not used when is_remote_https false*/
+      rejectUnauthorized: (doAuth && !ignore_https_cert) /*not used when is_remote_https false*/
     });
     realCon.on('data', function (buf) {
       //console.log('<<<<' + (Date.t=new Date()) + '.' + Date.t.getMilliseconds() + '\n' + buf.toString('ascii'));
@@ -185,7 +185,7 @@ function createPacServer(local_host, local_port, remote_host, remote_port, buf_p
       req.headers['authorization'] = buf_proxy_basic_auth.slice('Proxy-Authorization: '.length).toString();
     }
     internal_req.headers = req.headers;
-    internal_req.rejectUnauthorized = !ignore_https_cert; //only used for SSL
+    internal_req.rejectUnauthorized = (doAuth && !ignore_https_cert); //only used for SSL
 
     (is_remote_https ? https : http).get(internal_req, function (internal_res) {
 
