@@ -192,6 +192,7 @@ function createPacServer(local_host, local_port, remote_host, remote_port, buf_p
       delete internal_res.headers['content-length'];
       delete internal_res.headers['transfer-encoding'];
 
+      console.log(internal_res.statusCode)
       res.writeHead(internal_res.statusCode, internal_res.headers);
       res.__haveWrittenData = true;
 
